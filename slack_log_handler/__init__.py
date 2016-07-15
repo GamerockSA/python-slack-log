@@ -1,5 +1,6 @@
 import logging
 import json
+import sys
 
 try:
     from urllib.request import urlopen, Request
@@ -34,7 +35,7 @@ class SlackLogHandler(logging.Handler):
         if self.username:
             content['username'] = self.username
         else:
-            content['username'] = "{0} - {1}".format(record.module, record.name)
+            content['username'] = " ".join(sys.argv)
         if self.channel:
             content['channel'] = self.channel
         return content
